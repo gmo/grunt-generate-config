@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 				var configEntry = sectionConfigEntry[1];
 
 				var configEntryValue;
-				if (typeof input[section][configEntry] == "object") {
+				if (typeof input[section][configEntry] === "object") {
 					configEntryValue = input[section][configEntry][target];
 				}
 				else {

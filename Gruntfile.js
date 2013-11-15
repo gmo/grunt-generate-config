@@ -47,7 +47,8 @@ module.exports = function(grunt) {
 
 		// Unit tests.
 		nodeunit: {
-			tests: ['test/*_test.js']
+			dev: ['test/create_config_test_dev.js'],
+			stage: ['test/create_config_test_stage.js']
 		}
 
 	});
@@ -62,7 +63,9 @@ module.exports = function(grunt) {
 
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
 	// plugin's task(s), then test the result.
-	grunt.registerTask('test', ['clean', 'create_config', 'nodeunit']);
+	grunt.registerTask('test', ['test-dev', 'test-stage']);
+	grunt.registerTask('test-dev', ['create_config:dev', 'nodeunit:dev']);
+	grunt.registerTask('test-stage', ['create_config:stage', 'nodeunit:stage']);
 
 	// By default, lint and run all tests.
 	grunt.registerTask('default', ['jshint', 'test']);
