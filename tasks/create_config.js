@@ -31,11 +31,23 @@ module.exports = function(grunt) {
 				var section = sectionConfigEntry[0];
 				var configEntry = sectionConfigEntry[1];
 
+				if(input[section] == null) {
+					grunt.fail.fatal("Missing section: '" + section + "' from input: '" + options.input + "'");
+				}
+
 				var configEntryValue;
 				if (typeof input[section][configEntry] === "object") {
+
+					if(input[section][configEntry][target] == null) {
+						grunt.fail.fatal("Missing section: '" + section + "' config entry: '" + configEntry + "' target: '" + target + "' from input: '" + options.input + "'");
+					}
 					configEntryValue = input[section][configEntry][target];
 				}
 				else {
+
+					if(input[section][configEntry] == null) {
+						grunt.fail.fatal("Missing section: '" + section + "' config entry: '" + configEntry + "' from input: '" + options.input + "'");
+					}
 					configEntryValue = input[section][configEntry];
 				}
 

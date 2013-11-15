@@ -42,6 +42,11 @@ module.exports = function(grunt) {
 				options: {
 					input: '/some/other/dir/configValues.json'
 				}
+			},
+			other: {
+				options: {
+					templates: ['test/www/config_with_new_value.template.ini']
+				}
 			}
 		},
 
