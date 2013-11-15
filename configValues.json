@@ -1,0 +1,52 @@
+{
+	"memcache": {
+		"host": {
+			"dev": "dev.memcache.host",
+			"stage": "stage.memcache.host",
+			"production": "prod.memcache.host"
+		},
+		"port": 1234
+	},
+
+	"beanstalkd": {
+		"host": {
+			"dev": "dev.beanstalkd.host",
+			"stage": "stage.beanstalkd.host",
+			"production": "prod.beanstalkd.host"
+		},
+		"port": 4321,
+		"max_insert_count": {
+			"dev": 10,
+			"stage": 20,
+			"production": 30
+		},
+		"max_cache_length": {
+			"dev": 40,
+			"stage": 50,
+			"production": 60
+		}
+	},
+
+	"xyz-db": {
+		"host": {
+			"dev": "dev.xyz-db.host",
+			"stage": "stage.xyz-db.host",
+			"production": "prod.xyz-db.host"
+		},
+		"username": {
+			"dev": "dev.xyz-db.username",
+			"stage": "stage.xyz-db.username",
+			"production": "prod.xyz-db.username"
+		},
+		"password": {
+			"dev": "dev.xyz-db.password",
+			"stage": "stage.xyz-db.password",
+			"production": "prod.xyz-db.password"
+		},
+		"schema": {
+			"dev": "dev.xyz-db.schema",
+			"stage": "stage.xyz-db.schema",
+			"production": "prod.xyz-db.schema"
+		}
+	}
+}

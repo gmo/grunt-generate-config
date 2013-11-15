@@ -2,3 +2,5 @@ node_modules
 npm-debug.log
 tmp
 workspace.xml
+config.js
+config.ini

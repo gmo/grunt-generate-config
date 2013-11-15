@@ -10,41 +10,43 @@
 
 module.exports = function(grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
+	grunt.registerMultiTask('create_config', 'A Grunt plugin to generate configs from templates', function() {
 
-  grunt.registerMultiTask('create_config', 'A Grunt plugin to generate configs from templates', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
-    });
+		// Merge task-specific and/or target-specific options with these defaults.
+		var options = this.options({ });
+		var target = this.target;
+		var input = grunt.file.readJSON(options.input);
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+		var pattern = /\$(.*)\$/g;
+		options.templates.forEach(function(template) {
 
-      // Handle options.
-      src += options.punctuation;
+			var templateInput = grunt.file.read(template);
+			var output = templateInput;
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+			var match;
+			while (match = pattern.exec(templateInput)) {
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
-    });
-  });
+				var replaceMe = match[0];
+				var sectionConfigEntry = match[1].split(":");
+				var section = sectionConfigEntry[0];
+				var configEntry = sectionConfigEntry[1];
+
+				var configEntryValue;
+				if (typeof input[section][configEntry] == "object") {
+					configEntryValue = input[section][configEntry][target];
+				}
+				else {
+					configEntryValue = input[section][configEntry];
+				}
+
+				output = output.replace(replaceMe, configEntryValue);
+			}
+
+			var configFile = template.replace(".template", "");
+			grunt.log.writeln("Creating config: " + configFile);
+			grunt.file.write(configFile, output);
+		});
+
+	});
 
 };

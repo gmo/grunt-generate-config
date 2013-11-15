@@ -27,22 +27,20 @@ module.exports = function(grunt) {
 			tests: ['tmp']
 		},
 
-		// Configuration to be run (and then tested).
 		create_config: {
-			default_options: {
-				options: {
-				},
-				files: {
-					'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-				}
+			options: {
+				input: 'configValues.json',
+				templates: [
+					'test/www/config.template.ini',
+					'test/node/config.template.js'
+				]
 			},
-			custom_options: {
+
+			dev: {},
+			stage: {},
+			production: {
 				options: {
-					separator: ': ',
-					punctuation: ' !!!'
-				},
-				files: {
-					'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
+					input: '/some/other/dir/configValues.json'
 				}
 			}
 		},
@@ -69,4 +67,6 @@ module.exports = function(grunt) {
 	// By default, lint and run all tests.
 	grunt.registerTask('default', ['jshint', 'test']);
 
+	var target = grunt.option('target') || 'dev';
+	grunt.registerTask('build-config', ['create_config:' + target]);
 };
