@@ -27,7 +27,7 @@ grunt.initConfig({
   generateConfig: {
     options: {
       input: 'configValues.json',
-      tempates: [
+      templates: [
       	'www/config.template.ini',
       	'nodejs/config.template.js'
       ]
@@ -74,7 +74,7 @@ Type: `Array`
 
 An array of template files used to generate the config files.
 
-**Note:** The file name must contain _`template`_ in the file name.  A file named `config.template.ini` will become `config.ini`.
+**Note:** The file name must contain `template` in the file name.  A file named `config.template.ini` will become `config.ini`.
 
 __Sample INI Template File:__
 
@@ -109,4 +109,4 @@ module.exports = environmentSettings;
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-* 2013-11-18   v1.0.0
+* 2013-11-18			v1.0.0
