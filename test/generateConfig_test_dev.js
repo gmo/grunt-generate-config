@@ -2,7 +2,7 @@
 
 var grunt = require('grunt');
 
-exports.create_config = {
+exports.generateConfig = {
 	setUp: function(done) {
 		// setup here if necessary
 		done();

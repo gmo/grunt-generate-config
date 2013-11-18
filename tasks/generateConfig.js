@@ -10,7 +10,7 @@
 
 module.exports = function(grunt) {
 
-	grunt.registerMultiTask('createConfig', 'A Grunt plugin to generate configs from templates', function() {
+	grunt.registerMultiTask('generateConfig', 'A Grunt plugin to generate configs from templates', function() {
 
 		// Merge task-specific and/or target-specific options with these defaults.
 		var options = this.options({ });
@@ -81,7 +81,7 @@ module.exports = function(grunt) {
 			}
 
 			var configFile = template.replace(".template", "");
-			grunt.log.writeln("Creating config: " + configFile);
+			grunt.log.writeln("Generating config: " + configFile);
 			grunt.file.write(configFile, output);
 		});
 

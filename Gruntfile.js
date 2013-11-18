@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 			tests: ['tmp']
 		},
 
-		createConfig: {
+		generateConfig: {
 			options: {
 				input: 'configValues.json',
 				templates: [
@@ -52,8 +52,8 @@ module.exports = function(grunt) {
 
 		// Unit tests.
 		nodeunit: {
-			dev: ['test/create_config_test_dev.js'],
-			stage: ['test/create_config_test_stage.js']
+			dev: ['test/generateConfig_test_dev.js'],
+			stage: ['test/generateConfig_test_stage.js']
 		}
 
 	});
@@ -69,12 +69,12 @@ module.exports = function(grunt) {
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
 	// plugin's task(s), then test the result.
 	grunt.registerTask('test', ['test-dev', 'test-stage']);
-	grunt.registerTask('test-dev', ['createConfig:dev', 'nodeunit:dev']);
-	grunt.registerTask('test-stage', ['createConfig:stage', 'nodeunit:stage']);
+	grunt.registerTask('test-dev', ['generateConfig:dev', 'nodeunit:dev']);
+	grunt.registerTask('test-stage', ['generateConfig:stage', 'nodeunit:stage']);
 
 	// By default, lint and run all tests.
 	grunt.registerTask('default', ['jshint', 'test']);
 
 	var target = grunt.option('target') || 'dev';
-	grunt.registerTask('build-config', ['createConfig:' + target]);
+	grunt.registerTask('build-config', ['generateConfig:' + target]);
 };
