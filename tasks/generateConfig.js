@@ -1,6 +1,6 @@
 /*
- * grunt-create-config
- * https://github.com/jason/grunt-create-config
+ * grunt-generate-config
+ * https://github.com/gmodev/grunt-generate-config
  *
  * Copyright (c) 2013 Jason Gill
  * Licensed under the MIT license.
