@@ -28,6 +28,7 @@
 	},
 
 	"xyz-db": {
+
 		"host": {
 			"dev": "dev.xyz-db.host",
 			"stage": "stage.xyz-db.host",
@@ -47,6 +48,13 @@
 			"dev": "dev.xyz-db.schema",
 			"stage": "stage.xyz-db.schema",
 			"production": "prod.xyz-db.schema"
+		}
+	},
+
+	"misc": {
+		"whiteList": {
+			"dev": ["192.168.1.1", "127.0.0.1", "10.0.0.1"],
+			"stage": ["192.168.1.2", "127.0.0.2", "10.0.0.2"]
 		}
 	}
 }

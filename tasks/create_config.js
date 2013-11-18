@@ -27,7 +27,10 @@ module.exports = function(grunt) {
 			while (match = pattern.exec(templateInput)) {
 
 				var replaceMe = match[0];
-				var sectionConfigEntry = match[1].split(":");
+				var parts = match[1].split("|");
+				var sectionConfigEntry = parts[0].split(":");
+				var iterator = parts[1];
+
 				var section = sectionConfigEntry[0];
 				var configEntry = sectionConfigEntry[1];
 
@@ -51,7 +54,30 @@ module.exports = function(grunt) {
 					configEntryValue = input[section][configEntry];
 				}
 
-				output = output.replace(replaceMe, configEntryValue);
+				var replaceWith = "";
+				if (iterator !== undefined) {
+					for( var i = 0; i < configEntryValue.length; i++) {
+						var value = configEntryValue[i];
+						var temp = replaceWith + iterator.replace("{value}", value);
+
+						var j = i + 1;
+						if( j === configEntryValue.length ) {
+							temp = temp.replace("{newline}", "");
+							temp = temp.replace("{comma}", "");
+						}
+						else {
+							temp = temp.replace("{newline}", "\n");
+							temp = temp.replace("{comma}", ",");
+						}
+
+						replaceWith = temp;
+					}
+				}
+				else {
+					replaceWith = configEntryValue;
+				}
+
+				output = output.replace(replaceMe, replaceWith);
 			}
 
 			var configFile = template.replace(".template", "");
