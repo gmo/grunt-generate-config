@@ -9,7 +9,7 @@ var environmentSettings = {
 	},
 
 	misc: {
-		whiteList: ["192.168.1.2","127.0.0.2","10.0.0.2"]
+		whiteList: ["192.168.1.1","127.0.0.1","10.0.0.1"]
 	}
 
 };

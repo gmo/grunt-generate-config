@@ -39,7 +39,7 @@ module.exports = function(grunt) {
 				}
 
 				var configEntryValue;
-				if (typeof input[section][configEntry] === "object") {
+				if (typeof input[section][configEntry] === "object" && !(input[section][configEntry] instanceof Array) ) {
 
 					if(input[section][configEntry][target] == null) {
 						grunt.fail.fatal("Missing section: '" + section + "' config entry: '" + configEntry + "' target: '" + target + "' from input: '" + options.input + "'");
