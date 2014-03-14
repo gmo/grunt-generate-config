@@ -59,6 +59,7 @@ module.exports = function(grunt) {
 					for( var i = 0; i < configEntryValue.length; i++) {
 						var value = configEntryValue[i];
 						var temp = replaceWith + iterator.replace("{value}", value);
+						temp = temp.replace("{value:json}", JSON.stringify(value));
 
 						var j = i + 1;
 						if( j === configEntryValue.length ) {
